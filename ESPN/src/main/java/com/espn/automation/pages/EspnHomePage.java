@@ -1,5 +1,4 @@
 package com.espn.automation.pages;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,16 +12,12 @@ public class EspnHomePage extends BasePage{
 	}
 
 	@FindBy(id="global-user-trigger")
-	public static WebElement userIcon;
+	public WebElement userIcon;
 
-	public void login(){
-		try {
-			wait.until(ExpectedConditions.visibilityOf(userIcon));
-			userIcon.click();
-			Thread.sleep(1500);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+	@FindBy(css="#global-user-trigger + .global-user > .global-user-container > .account-management [tref=\"/members/v3_1/login\"]")
+	public WebElement loginOption;
+
+	@FindBy(id="did-ui-view")
+	public WebElement logInPopUp;
 
 }

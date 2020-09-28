@@ -5,17 +5,20 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 import com.espn.automation.MyDriver;
 import com.espn.automation.pages.EspnHomePage;
+import com.espn.automation.commonMethods.commonMethods;
 
 public class BaseTests {
 	
 	MyDriver myDriver;
 	private EspnHomePage espnHome;
+	private commonMethods _commonMethods;
 	
 	@BeforeSuite(alwaysRun=true)
 	@Parameters({"browser"})
 	public void beforeSuite(String browser) {
 		myDriver = new MyDriver(browser);
 		espnHome = new EspnHomePage(myDriver.getDriver());
+		_commonMethods = new commonMethods(myDriver.getDriver());
 	}
 	
 	@AfterSuite(alwaysRun=true)
@@ -23,7 +26,10 @@ public class BaseTests {
 		espnHome.dispose();
 	}
 
-	public EspnHomePage getEspnHomePage() {
+	public EspnHomePage espnHomePage() {
 		return espnHome;
+	}
+	public commonMethods commonMethods() {
+		return _commonMethods;
 	}
 }

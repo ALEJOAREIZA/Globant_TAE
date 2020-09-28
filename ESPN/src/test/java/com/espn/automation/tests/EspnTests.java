@@ -1,17 +1,22 @@
 package com.espn.automation.tests;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.espn.automation.pages.EspnHomePage;
+import com.espn.automation.commonMethods.commonMethods;
 
 public class EspnTests extends BaseTests {
 
-	
+
 	@Test
-	public void testEspnLogin() {
-		EspnHomePage home = getEspnHomePage();
-		home.login();
-		//Assert.assertEquals(EspnHomePage.getPageTitle(), "ESPN: Serving sports fans. Anytime. Anywhere.");
+	public void testLogInPopUp() {
+		EspnHomePage _espnHomePage = espnHomePage();
+		commonMethods _commonMethods = commonMethods();
+		_commonMethods.click(_espnHomePage.userIcon);
+		_commonMethods.click(_espnHomePage.loginOption);
+		Assert.assertEquals(_commonMethods.getMessages(_espnHomePage.logInPopUp), "ESPN: Serving sports fans. Anytime. Anywhere.");
 	}
 //	@Test
 //	public void test1(){
