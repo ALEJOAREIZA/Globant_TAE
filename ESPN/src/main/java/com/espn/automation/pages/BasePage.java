@@ -1,4 +1,4 @@
-package com.automation.training.pages;
+package com.espn.automation.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

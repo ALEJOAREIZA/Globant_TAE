@@ -1,31 +1,29 @@
-package com.automation.training.tests;
+package com.espn.automation.tests;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
-
-import com.automation.training.MyDriver;
-import com.automation.training.pages.WikiHomePage;
+import com.espn.automation.MyDriver;
+import com.espn.automation.pages.EspnHomePage;
 
 public class BaseTests {
 	
 	MyDriver myDriver;
-	
-	private WikiHomePage wikiHome;
+	private EspnHomePage espnHome;
 	
 	@BeforeSuite(alwaysRun=true)
 	@Parameters({"browser"})
 	public void beforeSuite(String browser) {
 		myDriver = new MyDriver(browser);
-		wikiHome = new WikiHomePage(myDriver.getDriver());
+		espnHome = new EspnHomePage(myDriver.getDriver());
 	}
 	
 	@AfterSuite(alwaysRun=true)
 	public void afterSuite() {
-		wikiHome.dispose();
+		espnHome.dispose();
 	}
 
-	public WikiHomePage getWikiHomePage() {
-		return wikiHome;
+	public EspnHomePage getEspnHomePage() {
+		return espnHome;
 	}
 }
