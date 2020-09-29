@@ -1,5 +1,6 @@
 package com.espn.automation.commonMethods;
 import com.espn.automation.pages.BasePage;
+import com.espn.automation.pages.EspnHomePage;
 import com.github.javafaker.Faker;
 import org.apache.xpath.objects.XNull;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
@@ -18,13 +20,13 @@ public class commonMethods extends BasePage {
 
     public commonMethods(WebDriver driver) {
         super(driver);
+
     }
 
     public String randomEmail(){
         Faker faker = new Faker();
         return faker.name().firstName()+"_"+faker.name().lastName()+ "@tae.com";
     }
-
     public WebElement waitandfind(WebElement element){
         try
         {
@@ -101,6 +103,24 @@ public class commonMethods extends BasePage {
             System.out.println("Error On enterText: "+element);
         }
     }
+    public void createAccount(){
+        EspnHomePage _espnHomePage =new EspnHomePage(driver);
+        String firstName="Alejandro";
+        String lastName="Areiza";
+        String email=randomEmail();
+        String password="HelloWorld1!";
+        click(_espnHomePage.userIcon);
+        click(_espnHomePage.loginOption);
+        changetoFrame(_espnHomePage.logInFrame);
+        click(_espnHomePage.SignUpbutton);
+        enterText(firstName,_espnHomePage.firstName);
+        enterText(lastName,_espnHomePage.lastName);
+        enterText(email,_espnHomePage.email);
+        enterText(password,_espnHomePage.password);
+        click(_espnHomePage.SignUpConfirmationButton);
+        exitfromFrame();
+    }
+
 
 
 

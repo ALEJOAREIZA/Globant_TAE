@@ -53,7 +53,6 @@ public class EspnTests extends BaseTests {
 		String lastName="Areiza";
 		String email=_commonMethods.randomEmail();
 		String password="HelloWorld1!";
-
 		_commonMethods.click(_espnHomePage.userIcon);
 		_commonMethods.click(_espnHomePage.loginOption);
 		_commonMethods.changetoFrame(_espnHomePage.logInFrame);
@@ -101,9 +100,16 @@ public class EspnTests extends BaseTests {
 		_commonMethods.click(_espnHomePage.userIcon);
 		_commonMethods.click(_espnHomePage.logoutOption);
 		_commonMethods.click(_espnHomePage.userIcon);
-		Assert.assertTrue(_commonMethods.isClickable(_espnHomePage.loginOption));		
+		Assert.assertTrue(_commonMethods.isClickable(_espnHomePage.loginOption));
 	}
 
-
+	@Test(priority=6)
+	public void deleteAccount() {
+		EspnHomePage _espnHomePage = espnHomePage();
+		commonMethods _commonMethods = commonMethods();
+		_commonMethods.createAccount();
+		_commonMethods.click(_espnHomePage.userIcon);
+		//_commonMethods.click(_espnHomePage.espnProfile);
+	}
 
 }
