@@ -1,5 +1,6 @@
 package com.espn.automation.commonMethods;
 import com.espn.automation.pages.BasePage;
+import org.apache.xpath.objects.XNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.Alert;
@@ -27,18 +28,30 @@ public class commonMethods extends BasePage {
             return  element;
         }
         catch(Exception e) {
-            System.out.println("Element not found: "+e);
+            System.out.println("Element not found: "+element);
             return null;
+        }
+    }
+
+    public boolean isClickable(WebElement element){
+        WebElement elementfound = waitandfind(element);
+        if(elementfound.isDisplayed()){
+            wait.until(ExpectedConditions.elementToBeClickable(elementfound));
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
     public void click(WebElement element){
         try {
             WebElement elementfound = waitandfind(element);
-            elementfound.click();
+            WebElement el = wait.until(ExpectedConditions.elementToBeClickable(elementfound));
+            el.click();
         }
         catch(Exception e) {
-            System.out.println("Error On click: "+e);
+            System.out.println("Error On click: "+element);
         }
     }
 
@@ -48,41 +61,32 @@ public class commonMethods extends BasePage {
             return elementfound.getText();
         }
         catch(Exception e) {
-            System.out.println("Error on GetMessages: "+e);
+            System.out.println("Error on GetMessages: "+element);
             return null;
         }
     }
 
-    public String getCurrentWindow()
+    public void changetoFrame(WebElement frame)
     {
-        return driver.getCurrentUrl();        //return alert.getText();
-    }
-
-    public void changeFrame(WebElement frame)
-    {
-        driver.switchTo().frame(frame);
-
-    }
-
-    public void changeWindow(String window)
-    {
-        driver.switchTo().window(window);
-    }
-
-    public void myassert(String expectedMessage,String currentMessage)
-    {
-        Assert.assertEquals(expectedMessage, currentMessage);
-        if (expectedMessage==currentMessage){
-            System.out.println("test passed :D ");
-            System.out.println("expected Message: "+expectedMessage);
-            System.out.println("current Message: "+currentMessage);
+        try {
+            WebElement elementfound = waitandfind(frame);
+            driver.switchTo().frame(elementfound);
         }
-        else{
-            System.out.println("test failed :( ");
-            System.out.println("expected Message: "+expectedMessage);
-            System.out.println("current Message: "+currentMessage);
+        catch(Exception e) {
+            System.out.println("Error on changetoFrame: "+frame);
         }
+    }
 
+    public void exitfromFrame()
+    {
+      driver.switchTo().defaultContent();
+    }
+
+    public void assertlog(String expectedMessage,String currentMessage)
+    {
+        Assert.assertEquals(expectedMessage,currentMessage);
+        System.out.println("expected Message: "+expectedMessage);
+        System.out.println("current Message: "+currentMessage);
     }
 
 

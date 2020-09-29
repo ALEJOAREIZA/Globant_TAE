@@ -16,6 +16,7 @@ public class MyDriver {
 		case "chrome":
 			System.setProperty("webdriver.chrome.driver", "C:\\chrome driver\\chromedriver.exe");
 			driver = new ChromeDriver();
+			driver.get("https://www.espn.com/?src=com&_adblock=true");
 			break;
 		default:
 			break;

@@ -9,7 +9,7 @@ public class EspnHomePage extends BasePage{
 
 	public EspnHomePage(WebDriver driver) {
 		super(driver);
-		driver.get("https://www.espn.com/?src=com&_adblock=true\"");
+		//driver.get("https://www.espn.com/?src=com&_adblock=true");
 	}
 
 	@FindBy(id="global-user-trigger")
@@ -23,6 +23,14 @@ public class EspnHomePage extends BasePage{
 
 	@FindBy(id="disneyid-iframe")
 	public WebElement logInFrame;
+
+	@FindBy(id="close")
+	public WebElement closeXIcon;
+
+	@FindBy(css="[ng-click=\"vm.createAccount()\"]")
+	public WebElement signUpButton;
+
+
 
 
 
