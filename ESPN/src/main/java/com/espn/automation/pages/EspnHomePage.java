@@ -1,4 +1,5 @@
 package com.espn.automation.pages;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,5 +20,10 @@ public class EspnHomePage extends BasePage{
 
 	@FindBy(id="did-ui-view")
 	public WebElement logInPopUp;
+
+	@FindBy(id="disneyid-iframe")
+	public WebElement logInFrame;
+
+
 
 }

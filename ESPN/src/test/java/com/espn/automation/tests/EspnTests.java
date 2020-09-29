@@ -14,9 +14,15 @@ public class EspnTests extends BaseTests {
 	public void testLogInPopUp() {
 		EspnHomePage _espnHomePage = espnHomePage();
 		commonMethods _commonMethods = commonMethods();
+		String homeWindow = _commonMethods.getCurrentWindow();
 		_commonMethods.click(_espnHomePage.userIcon);
 		_commonMethods.click(_espnHomePage.loginOption);
-		Assert.assertEquals(_commonMethods.getMessages(_espnHomePage.logInPopUp), "ESPN: Serving sports fans. Anytime. Anywhere.");
+		_commonMethods.changeFrame(_espnHomePage.logInFrame);
+		Assert.assertEquals(_commonMethods.getMessages(_espnHomePage.logInPopUp),
+				"Log In\n" +
+				"Need help logging in?\n" +
+				"Facebook Log In is no longer available. For help logging in, please use the link above.\n" +
+				"Sign Up");
 	}
 //	@Test
 //	public void test1(){
