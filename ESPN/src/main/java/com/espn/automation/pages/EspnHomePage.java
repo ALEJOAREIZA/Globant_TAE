@@ -21,6 +21,9 @@ public class EspnHomePage extends BasePage{
 	@FindBy(id="did-ui-view")
 	public WebElement logInPopUp;
 
+	@FindBy(id="did-ui-view")
+	public WebElement SignInPopUp;
+
 	@FindBy(id="disneyid-iframe")
 	public WebElement logInFrame;
 

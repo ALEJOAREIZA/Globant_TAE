@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 public class commonMethods extends BasePage {
@@ -49,6 +50,8 @@ public class commonMethods extends BasePage {
             WebElement elementfound = waitandfind(element);
             WebElement el = wait.until(ExpectedConditions.elementToBeClickable(elementfound));
             el.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Thread.sleep(2000);
         }
         catch(Exception e) {
             System.out.println("Error On click: "+element);
@@ -82,12 +85,7 @@ public class commonMethods extends BasePage {
       driver.switchTo().defaultContent();
     }
 
-    public void assertlog(String expectedMessage,String currentMessage)
-    {
-        Assert.assertEquals(expectedMessage,currentMessage);
-        System.out.println("expected Message: "+expectedMessage);
-        System.out.println("current Message: "+currentMessage);
-    }
+
 
 
 }
