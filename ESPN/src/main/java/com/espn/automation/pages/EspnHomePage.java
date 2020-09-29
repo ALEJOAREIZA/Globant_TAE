@@ -31,7 +31,7 @@ public class EspnHomePage extends BasePage{
 	public WebElement closeXIcon;
 
 	@FindBy(css="[ng-click=\"vm.createAccount()\"]")
-	public WebElement signUpButton;
+	public WebElement SignUpbutton;
 
 	@FindBy(css="[name=firstName]")
 	public WebElement firstName;
@@ -46,10 +46,20 @@ public class EspnHomePage extends BasePage{
 	public WebElement password;
 
 	@FindBy(css="div.btn-group")
-	public WebElement SignUpbutton;
+	public WebElement SignUpConfirmationButton;
 
 	@FindBy(css="#global-user-trigger + .global-user > .global-user-container > .account-management [class=\"small\"]")
 	public WebElement logoutOption;
+
+	@FindBy(css="[ng-model=\"vm.username\"]")
+	public WebElement userName;
+
+	@FindBy(css="[ng-model=\"vm.password\"]")
+	public WebElement signInPassword;
+
+	@FindBy(css="[ng-click=\"vm.submitLogin()\"]")
+	public WebElement logInButton;
+
 
 
 

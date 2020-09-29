@@ -33,7 +33,7 @@ public class EspnTests extends BaseTests {
 		_commonMethods.click(_espnHomePage.userIcon);
 		_commonMethods.click(_espnHomePage.loginOption);
 		_commonMethods.changetoFrame(_espnHomePage.logInFrame);
-		_commonMethods.click(_espnHomePage.signUpButton);
+		_commonMethods.click(_espnHomePage.SignUpbutton);
 		Assert.assertEquals(_commonMethods.getMessages(_espnHomePage.SignInPopUp),"Create Account\n" +
 				"Show password\n" +
 				"Please send me occasional information and offers about my favorite teams, sports and other information from:\n" +
@@ -57,55 +57,53 @@ public class EspnTests extends BaseTests {
 		_commonMethods.click(_espnHomePage.userIcon);
 		_commonMethods.click(_espnHomePage.loginOption);
 		_commonMethods.changetoFrame(_espnHomePage.logInFrame);
-		_commonMethods.click(_espnHomePage.signUpButton);
+		_commonMethods.click(_espnHomePage.SignUpbutton);
 		_commonMethods.enterText(firstName,_espnHomePage.firstName);
 		_commonMethods.enterText(lastName,_espnHomePage.lastName);
 		_commonMethods.enterText(email,_espnHomePage.email);
 		_commonMethods.enterText(password,_espnHomePage.password);
-		_commonMethods.click(_espnHomePage.SignUpbutton);
+		_commonMethods.click(_espnHomePage.SignUpConfirmationButton);
 		_commonMethods.exitfromFrame();
 		Assert.assertTrue(_commonMethods.isClickable(_espnHomePage.userIcon));
+		_commonMethods.click(_espnHomePage.userIcon);
+		_commonMethods.click(_espnHomePage.logoutOption);
 	}
-//	@Test
-//	public void test3(){
-//		EspnHomePage home = getEspnHomePage();
-//		Assert.assertEquals(home.getPageTitle(), "ESPN: Serving sports fans. Anytime. Anywhere.");
-//	}
-//	@Test
-//	public void test4(){
-//		EspnHomePage home = getEspnHomePage();
-//		Assert.assertEquals(home.getPageTitle(), "ESPN: Serving sports fans. Anytime. Anywhere.");
-//	}
-//	@Test
-//	public void test5(){
-//		EspnHomePage home = getEspnHomePage();
-//		Assert.assertEquals(home.getPageTitle(), "ESPN: Serving sports fans. Anytime. Anywhere.");
-//	}
-//	@Test
-//	public void test6(){
-//		EspnHomePage home = getEspnHomePage();
-//		Assert.assertEquals(home.getPageTitle(), "ESPN: Serving sports fans. Anytime. Anywhere.");
-//	}
-//	@Test
-//	public void test7(){
-//		EspnHomePage home = getEspnHomePage();
-//		Assert.assertEquals(home.getPageTitle(), "ESPN: Serving sports fans. Anytime. Anywhere.");
-//	}
-//	@Test
-//	public void test8(){
-//		EspnHomePage home = getEspnHomePage();
-//		Assert.assertEquals(home.getPageTitle(), "ESPN: Serving sports fans. Anytime. Anywhere.");
-//	}
-//	@Test
-//	public void test9(){
-//		EspnHomePage home = getEspnHomePage();
-//		Assert.assertEquals(home.getPageTitle(), "ESPN: Serving sports fans. Anytime. Anywhere.");
-//	}
-//	@Test
-//	public void test10(){
-//		EspnHomePage home = getEspnHomePage();
-//		Assert.assertEquals(home.getPageTitle(), "ESPN: Serving sports fans. Anytime. Anywhere.");
-//	}
+	@Test(priority=4)
+	public void testLogIn() {
+		EspnHomePage _espnHomePage = espnHomePage();
+		commonMethods _commonMethods = commonMethods();
+		String username="globant_tae@tae.com";
+		String password="HelloWorld1!";
+		_commonMethods.click(_espnHomePage.userIcon);
+		_commonMethods.click(_espnHomePage.loginOption);
+		_commonMethods.changetoFrame(_espnHomePage.logInFrame);
+		_commonMethods.enterText(username,_espnHomePage.userName);
+		_commonMethods.enterText(password,_espnHomePage.signInPassword);
+		_commonMethods.click(_espnHomePage.logInButton);
+		_commonMethods.exitfromFrame();
+		_commonMethods.click(_espnHomePage.userIcon);
+		Assert.assertTrue(_commonMethods.isClickable(_espnHomePage.logoutOption));
+		_commonMethods.click(_espnHomePage.logoutOption);
+	}
+	@Test(priority=5)
+	public void testLogOut() {
+		EspnHomePage _espnHomePage = espnHomePage();
+		commonMethods _commonMethods = commonMethods();
+		String username="globant_tae@tae.com";
+		String password="HelloWorld1!";
+		_commonMethods.click(_espnHomePage.userIcon);
+		_commonMethods.click(_espnHomePage.loginOption);
+		_commonMethods.changetoFrame(_espnHomePage.logInFrame);
+		_commonMethods.enterText(username,_espnHomePage.userName);
+		_commonMethods.enterText(password,_espnHomePage.signInPassword);
+		_commonMethods.click(_espnHomePage.logInButton);
+		_commonMethods.exitfromFrame();
+		_commonMethods.click(_espnHomePage.userIcon);
+		_commonMethods.click(_espnHomePage.logoutOption);
+		_commonMethods.click(_espnHomePage.userIcon);
+		Assert.assertTrue(_commonMethods.isClickable(_espnHomePage.loginOption));		
+	}
+
 
 
 }
