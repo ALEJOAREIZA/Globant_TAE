@@ -1,5 +1,6 @@
 package com.espn.automation.commonMethods;
 import com.espn.automation.pages.BasePage;
+import com.github.javafaker.Faker;
 import org.apache.xpath.objects.XNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +20,10 @@ public class commonMethods extends BasePage {
         super(driver);
     }
 
-
+    public String randomEmail(){
+        Faker faker = new Faker();
+        return faker.name().firstName()+"_"+faker.name().lastName()+ "@tae.com";
+    }
 
     public WebElement waitandfind(WebElement element){
         try

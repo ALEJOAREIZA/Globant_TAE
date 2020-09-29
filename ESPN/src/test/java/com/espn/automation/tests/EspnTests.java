@@ -51,7 +51,7 @@ public class EspnTests extends BaseTests {
 		commonMethods _commonMethods = commonMethods();
 		String firstName="Alejandro";
 		String lastName="Areiza";
-		String email="ejemplo9@tae.com";
+		String email=_commonMethods.randomEmail();
 		String password="HelloWorld1!";
 
 		_commonMethods.click(_espnHomePage.userIcon);
