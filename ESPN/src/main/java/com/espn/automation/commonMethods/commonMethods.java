@@ -21,19 +21,18 @@ public class commonMethods extends BasePage {
 
 
 
-    public WebElement waitandfind(WebElement element)
-    {
+    public WebElement waitandfind(WebElement element){
         try
         {
-            wait.until(ExpectedConditions.visibilityOf(element));
-            return  element;
+            WebElement elementfound = wait.until(ExpectedConditions.visibilityOf(element));
+            System.out.println("Element sucessfully found: "+elementfound);
+            return  elementfound;
         }
         catch(Exception e) {
             System.out.println("Element not found: "+element);
             return null;
         }
     }
-
     public boolean isClickable(WebElement element){
         WebElement elementfound = waitandfind(element);
         if(elementfound.isDisplayed()){
@@ -44,20 +43,27 @@ public class commonMethods extends BasePage {
             return false;
         }
     }
-
+    public boolean isDisplayed(WebElement element){
+        if(waitandfind(element).isDisplayed()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     public void click(WebElement element){
         try {
             WebElement elementfound = waitandfind(element);
-            WebElement el = wait.until(ExpectedConditions.elementToBeClickable(elementfound));
+            wait = new WebDriverWait(driver, 10);
+            WebElement el = wait.until(ExpectedConditions.elementToBeClickable((elementfound)));
             el.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //Thread.sleep(2000);
+            //driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+            Thread.sleep(5000);
         }
         catch(Exception e) {
-            System.out.println("Error On click: "+element);
+            System.out.println("Error On click: "+element+" error: "+e);
         }
     }
-
     public String getMessages(WebElement element){
         try {
             WebElement elementfound = waitandfind(element);
@@ -68,9 +74,7 @@ public class commonMethods extends BasePage {
             return null;
         }
     }
-
-    public void changetoFrame(WebElement frame)
-    {
+    public void changetoFrame(WebElement frame){
         try {
             WebElement elementfound = waitandfind(frame);
             driver.switchTo().frame(elementfound);
@@ -79,12 +83,20 @@ public class commonMethods extends BasePage {
             System.out.println("Error on changetoFrame: "+frame);
         }
     }
-
     public void exitfromFrame()
     {
       driver.switchTo().defaultContent();
     }
-
+    public void enterText(String text,WebElement element){
+        try {
+            WebElement elementfound = waitandfind(element);
+            elementfound.sendKeys(text);
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        }
+        catch(Exception e) {
+            System.out.println("Error On enterText: "+element);
+        }
+    }
 
 
 
