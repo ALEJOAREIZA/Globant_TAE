@@ -19,11 +19,14 @@ public class BaseTests {
 		myDriver = new MyDriver(browser);
 		espnHome = new EspnHomePage(myDriver.getDriver());
 		_commonMethods = new commonMethods(myDriver.getDriver());
+		_commonMethods.createCredentails();
 	}
 	
 	@AfterSuite(alwaysRun=true)
 	public void afterSuite() {
+
 		espnHome.dispose();
+		_commonMethods.deleteCredentails();
 	}
 
 	public EspnHomePage espnHomePage() {

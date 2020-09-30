@@ -1,20 +1,16 @@
 package com.espn.automation.commonMethods;
 import com.espn.automation.pages.BasePage;
-import com.espn.automation.pages.EspnHomePage;
 import com.github.javafaker.Faker;
-import org.apache.xpath.objects.XNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
-import java.util.List;
-import java.util.Set;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 public class commonMethods extends BasePage {
 
@@ -103,24 +99,52 @@ public class commonMethods extends BasePage {
             System.out.println("Error On enterText: "+element);
         }
     }
-    public void createAccount(){
-        EspnHomePage _espnHomePage =new EspnHomePage(driver);
-        String firstName="Alejandro";
-        String lastName="Areiza";
-        String email=randomEmail();
-        String password="HelloWorld1!";
-        click(_espnHomePage.userIcon);
-        click(_espnHomePage.loginOption);
-        changetoFrame(_espnHomePage.logInFrame);
-        click(_espnHomePage.SignUpbutton);
-        enterText(firstName,_espnHomePage.firstName);
-        enterText(lastName,_espnHomePage.lastName);
-        enterText(email,_espnHomePage.email);
-        enterText(password,_espnHomePage.password);
-        click(_espnHomePage.SignUpConfirmationButton);
-        exitfromFrame();
-    }
+    public void writeCredentails(String email, String password){
+        try {
+            FileWriter myWriter = new FileWriter("credentials.txt",true);
+            myWriter.append("\n");
+            myWriter.write(email);
+            myWriter.append("\n");
+            myWriter.write(password);
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("Error writing credentials: "+e);
+        }
 
+    }
+    public String readCredentails(){
+        try {
+            String data = "";
+            return data = new String(Files.readAllBytes(Paths.get("credentials.txt")));
+        }
+        catch (IOException e) {
+            System.out.println("Error reading credentials: "+e);
+            return null;
+        }
+    }
+    public void createCredentails(){
+        try {
+            File credentials = new File("credentials.txt");
+            if (credentials.createNewFile()) {
+                System.out.println("File created: " + credentials.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+            writeCredentails("globant_tae2@tae.com","HelloWorld1!");
+        } catch (IOException e) {
+            System.out.println("An error occurred."+e);
+            e.printStackTrace();
+        }
+    }
+    public void deleteCredentails(){
+        File credentials = new File("credentials.txt");
+        if (credentials.delete()) {
+            System.out.println("Deleted the file: " + credentials.getName());
+        } else {
+            System.out.println("Failed to delete the file.");
+        }
+
+    }
 
 
 

@@ -24,8 +24,14 @@ public class EspnHomePage extends BasePage{
 	@FindBy(id="did-ui-view")
 	public WebElement SignInPopUp;
 
+	@FindBy(id="did-ui-view")
+	public WebElement AccountDeactivated;
+
 	@FindBy(id="disneyid-iframe")
 	public WebElement logInFrame;
+
+	@FindBy(id="disneyid-iframe")
+	public WebElement deleteAccountFrame;
 
 	@FindBy(id="close")
 	public WebElement closeXIcon;
@@ -59,6 +65,17 @@ public class EspnHomePage extends BasePage{
 
 	@FindBy(css="[ng-click=\"vm.submitLogin()\"]")
 	public WebElement logInButton;
+
+	@FindBy(css="#global-user-trigger + .global-user > .global-user-container > .account-management [tref=\"/members/v3_1/modifyAccount\"]")
+	public WebElement espnProfile;
+
+	@FindBy(id="cancel-account")
+	public WebElement deleteAccount;
+
+	@FindBy(css="[ng-click=\"vm.confirm()\"]")
+	public WebElement deleteAccountConfirmation;
+
+
 
 
 
