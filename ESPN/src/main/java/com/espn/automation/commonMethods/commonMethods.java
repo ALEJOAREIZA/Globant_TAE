@@ -59,7 +59,7 @@ public class commonMethods extends BasePage {
             wait = new WebDriverWait(driver, 10);
             WebElement el = wait.until(ExpectedConditions.elementToBeClickable((elementfound)));
             el.click();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);            
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);            
         }
         catch(Exception e) {
             System.out.println("Error On click: "+element+" error: "+e);
