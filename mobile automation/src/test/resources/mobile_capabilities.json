@@ -1,0 +1,7 @@
+{
+	"deviceName": "emulator-5554",
+	"platformName": "Android",
+	"platformVersion": "11",
+	"appPackage": "com.trivago",
+	"appActivity": "com.trivago.ft.main.frontend.MainActivity"
+}
