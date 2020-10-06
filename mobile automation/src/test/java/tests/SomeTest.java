@@ -30,7 +30,7 @@ public class SomeTest extends BaseMobileTest {
 	public void firstTest() {
 		CountriesScreen countries = returnCountriesScreen();
 		PrivacidadDatos privacidad = countries.selectColombia();
-
+		privacidad.confirm();
 	}
 
 }

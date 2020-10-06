@@ -12,6 +12,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import screens.CountriesScreen;
 import screens.FirstScreen;
+import screens.PrivacidadDatos;
 import util.ConfigCapabilities;
 
 /**
@@ -50,18 +51,15 @@ public abstract class BaseMobileTest {
 		 driver.quit();
 	}
 
-	/**
-	 * returns FirstScreen.
-	 * 
-	 * @author Arley.Bolivar
-	 * 
-	 * @return FirstScreen
-	 */
+
 	protected FirstScreen returnFirstScreen() {
 		return new FirstScreen(driver);
 	}
 	protected CountriesScreen returnCountriesScreen() {
 		return new CountriesScreen(driver);
+	}
+	protected PrivacidadDatos returnPrivacidadDatos() {
+		return new PrivacidadDatos(driver);
 	}
 
 }
