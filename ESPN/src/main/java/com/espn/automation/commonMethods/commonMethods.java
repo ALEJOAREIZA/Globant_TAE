@@ -27,6 +27,7 @@ public class commonMethods extends BasePage {
         try
         {
             WebElement elementfound = wait.until(ExpectedConditions.visibilityOf(element));
+            implicitwait(1);
             System.out.println("Element sucessfully found: "+elementfound);
             return  elementfound;
         }
@@ -59,7 +60,7 @@ public class commonMethods extends BasePage {
             wait = new WebDriverWait(driver, 10);
             WebElement el = wait.until(ExpectedConditions.elementToBeClickable((elementfound)));
             el.click();
-            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);            
+            implicitwait(2);
         }
         catch(Exception e) {
             System.out.println("Error On click: "+element+" error: "+e);
@@ -129,7 +130,7 @@ public class commonMethods extends BasePage {
             } else {
                 System.out.println("File already exists.");
             }
-            writeCredentails("globant_tae2@tae.com","HelloWorld1!");
+            writeCredentails("globant_tae4@tae.com","HelloWorld1!");
         } catch (IOException e) {
             System.out.println("An error occurred."+e);
             e.printStackTrace();
@@ -143,6 +144,16 @@ public class commonMethods extends BasePage {
             System.out.println("Failed to delete the file.");
         }
 
+    }
+
+    public void implicitwait(int seconds){
+
+        try {
+            driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+            Thread.sleep(seconds*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 

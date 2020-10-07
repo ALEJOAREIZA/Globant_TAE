@@ -124,6 +124,7 @@ public class EspnTests extends BaseTests {
 		_commonMethods.changetoFrame(_espnHomePage.deleteAccountFrame);
 		_commonMethods.click(_espnHomePage.deleteAccount);
 		_commonMethods.click(_espnHomePage.deleteAccountConfirmation);
+		_commonMethods.click(_espnHomePage.deleteAccountConfirmationclose);
 		_commonMethods.exitfromFrame();
 		_commonMethods.click(_espnHomePage.userIcon);
 		Assert.assertTrue(_commonMethods.isClickable(_espnHomePage.loginOption));

@@ -75,6 +75,8 @@ public class EspnHomePage extends BasePage{
 	@FindBy(css="[ng-click=\"vm.confirm()\"]")
 	public WebElement deleteAccountConfirmation;
 
+	@FindBy(css="ng-click=\"vm.close()\"")
+	public WebElement deleteAccountConfirmationclose;
 
 
 
