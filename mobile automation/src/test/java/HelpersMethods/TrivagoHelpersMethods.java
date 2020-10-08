@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.By;
 import util.CustomWait;
 import util.screens.BaseScreen;
 import util.tests.BaseMobileTest;
@@ -11,6 +12,7 @@ import util.tests.BaseMobileTest;
 import screens.CountriesScreen;
 
 import java.time.Duration;
+import java.util.List;
 
 import static io.appium.java_client.touch.offset.ElementOption.element;
 import static io.appium.java_client.touch.offset.PointOption.point;
@@ -42,5 +44,10 @@ public class TrivagoHelpersMethods {
     public static boolean isEnabled(AndroidElement element){
         CustomWait.waitAndroidElementVisibility(element, CustomWait.SHORT_WAIT_SECONDS);
         return element.isEnabled();
+    }
+
+    public static int numberOfElementsByclassName(String element){
+        List elementList = driver.findElements(By.className(element));
+        return elementList.size();
     }
 }

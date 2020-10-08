@@ -59,6 +59,27 @@ public class TrivagoTest extends BaseMobileTest {
 		Assert.assertTrue(TrivagoHelpersMethods.isPresent(landingView.settingsButton));
 	}
 
+	@Test(priority = 4)
+	public void settingsPrivacyTest() {
+		settingsScreen settings = returnsettingsScreen();
+		settings.gotoSettings();
+		Assert.assertEquals(TrivagoHelpersMethods.numberOfElementsByclassName(settings.TextView),14);
+		Assert.assertEquals(TrivagoHelpersMethods.numberOfElementsByclassName(settings.View),3);
+		Assert.assertEquals(TrivagoHelpersMethods.numberOfElementsByclassName(settings.ViewGroup),8);
+		Assert.assertEquals(TrivagoHelpersMethods.numberOfElementsByclassName(settings.FrameLayout),12);
+		DataPrivacySettingsScreen dataprivacysettings = settings.gotoPrivacyDataSettings();
+		Assert.assertEquals(dataprivacysettings.privacydataSettingsbody.getText(),TrivagoAsserts.privacyDatasettingsBody);
+		Assert.assertEquals(dataprivacysettings.appsFlyer.getText(),TrivagoAsserts.privacyDatasettingsappsFlyer);
+		Assert.assertEquals(dataprivacysettings.GTM.getText(),TrivagoAsserts.privacyDatasettingsGTM);
+		Assert.assertEquals(dataprivacysettings.Facebook.getText(),TrivagoAsserts.privacyDatasettingsFacebook);
+		Assert.assertEquals(dataprivacysettings.footer.getText(),TrivagoAsserts.privacyDatasettingsfooter);
+		Assert.assertTrue(TrivagoHelpersMethods.isPresent(dataprivacysettings.privacyDtasaveButton));
+		Assert.assertTrue(TrivagoHelpersMethods.isEnabled(dataprivacysettings.privacyDtasaveButton));
+		Assert.assertEquals(TrivagoHelpersMethods.numberOfElementsByclassName(dataprivacysettings.CheckBox),3);
+		dataprivacysettings.checkboxCombinations();
+
+	}
+
 
 
 }

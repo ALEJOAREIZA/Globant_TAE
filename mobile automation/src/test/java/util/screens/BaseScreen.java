@@ -72,4 +72,6 @@ public abstract class BaseScreen {
 		CustomWait.waitAndroidElementVisibility(trivagiLogo, CustomWait.SHORT_WAIT_SECONDS);
 	}
 
+
+
 }

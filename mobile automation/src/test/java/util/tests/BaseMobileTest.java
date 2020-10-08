@@ -12,10 +12,7 @@ import java.net.URL;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.testng.annotations.BeforeSuite;
-import screens.CountriesScreen;
-import screens.DestinationScreen;
-import screens.LandingViewScreen;
-import screens.DataPrivacyScreen;
+import screens.*;
 import util.ConfigCapabilities;
 import util.CustomWait;
 
@@ -71,6 +68,12 @@ public abstract class BaseMobileTest {
 	}
 	protected DestinationScreen returnDestinationScreen() {
 		return new DestinationScreen(driver);
+	}
+	protected settingsScreen returnsettingsScreen() {
+		return new settingsScreen(driver);
+	}
+	protected DataPrivacySettingsScreen returnDataPrivacySettingsScreen() {
+		return new DataPrivacySettingsScreen(driver);
 	}
 
 
