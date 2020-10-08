@@ -12,17 +12,16 @@ import org.pmw.tinylog.Logger;
 
 /**
  * Base class for all Screen Objects.
- * 
+ *
  */
 public abstract class BaseScreen {
 	/** The driver. */
 	protected AndroidDriver<AndroidElement> driver;
-	protected CustomWait customWait = new CustomWait();
 	private static final int PERCENT = 100;
 
 	/**
 	 * Constructor method for standard screen object.
-	 * 
+	 *
 	 * @param pDriver : AndroidDriver
 	 */
 	public BaseScreen(AndroidDriver<AndroidElement> pDriver) {

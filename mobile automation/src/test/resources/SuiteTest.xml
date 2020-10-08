@@ -3,7 +3,7 @@
 <suite name="My suite">
 <test name="Trivago Test">
 	<classes>
-		<class name="tests.SomeTest"></class>
+		<class name="tests.TrivagoTest"></class>
 	</classes>
 </test>
 </suite> 
