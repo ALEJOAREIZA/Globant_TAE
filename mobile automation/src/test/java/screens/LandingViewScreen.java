@@ -26,7 +26,7 @@ public class LandingViewScreen extends BaseScreen {
     public AndroidElement destinationInput;
 
     @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().className(\"android.widget.TextView\").textContains(\"Ciudad - Bolívar, Colombia, Centro- y Sudamérica\"))")
-    private AndroidElement cartagenaCityOption;
+    public AndroidElement cartagenaCityOption;
 
     public choosingDatesScreen selectCartagena(){
         destinationButton.click();

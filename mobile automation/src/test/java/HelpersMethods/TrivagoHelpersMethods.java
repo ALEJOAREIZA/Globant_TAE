@@ -25,8 +25,6 @@ public class TrivagoHelpersMethods {
     }
 
 
-
-
     public void scroll(PointOption startpoint, PointOption endpoint){
         new TouchAction(driver)
                 .press(startpoint)
@@ -39,5 +37,10 @@ public class TrivagoHelpersMethods {
     public static boolean isPresent(AndroidElement element){
         CustomWait.waitAndroidElementVisibility(element, CustomWait.SHORT_WAIT_SECONDS);
         return element.isDisplayed();
+    }
+
+    public static boolean isEnabled(AndroidElement element){
+        CustomWait.waitAndroidElementVisibility(element, CustomWait.SHORT_WAIT_SECONDS);
+        return element.isEnabled();
     }
 }
