@@ -11,20 +11,6 @@ import util.CustomWait;
 
 public class TrivagoTest extends BaseMobileTest {
 
-//	/**
-//	 * Verify something.
-//	 *
-//	 * @author AnyOne
-//	 *
-//	 */
-//	@Parameters({ "someParameter", "someParameter" })
-//	@Test(groups = { "someGroup" })
-//	public void someTest() {
-//		FirstScreen nameOfMyFirstScreen = returnFirstScreen();
-//		nameOfMyFirstScreen.someInstructions();
-//		SecondScreen nameOfMySecondScreen = nameOfMyFirstScreen.returnSecondScreen();
-//		nameOfMySecondScreen.flowInsideSecondScreen();
-//	}
 
 	@Test(priority = 1)
 	public void DataPrivacyTest() {
