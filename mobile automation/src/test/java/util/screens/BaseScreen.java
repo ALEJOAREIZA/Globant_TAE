@@ -2,6 +2,7 @@ package util.screens;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import util.CustomWait;
 
@@ -52,6 +53,23 @@ public abstract class BaseScreen {
 		String automator = "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"%s\"))";
 		AndroidElement textOnElement = driver.findElementByAndroidUIAutomator(format(automator, text));
 		Logger.info(textOnElement.getText());
+	}
+
+	@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.trivago:id/action_home\")")
+	public AndroidElement homeButton;
+	@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.trivago:id/action_explore\")")
+	public AndroidElement exploreButton;
+	@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.trivago:id/action_favourites\")")
+	public AndroidElement favouritesButton;
+	@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.trivago:id/action_settings\")")
+	public AndroidElement settingsButton;
+
+	@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.trivago:id/fragmentHomeLogoImageView\")")
+	public AndroidElement trivagiLogo;
+
+	public void gotoHome(){
+		homeButton.click();
+		CustomWait.waitAndroidElementVisibility(trivagiLogo, CustomWait.SHORT_WAIT_SECONDS);
 	}
 
 }

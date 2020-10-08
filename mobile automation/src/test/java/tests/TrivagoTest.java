@@ -52,8 +52,11 @@ public class TrivagoTest extends BaseMobileTest {
 	@Test(priority = 3)
 	public void landingViewTest() {
 		LandingViewScreen landingView = returnLandingViewScreen();
-
-
+		landingView.gotoHome();
+		Assert.assertTrue(TrivagoHelpersMethods.isPresent(landingView.homeButton));
+		Assert.assertTrue(TrivagoHelpersMethods.isPresent(landingView.exploreButton));
+		Assert.assertTrue(TrivagoHelpersMethods.isPresent(landingView.favouritesButton));
+		Assert.assertTrue(TrivagoHelpersMethods.isPresent(landingView.settingsButton));
 	}
 
 
