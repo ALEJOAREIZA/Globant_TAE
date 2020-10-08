@@ -31,8 +31,13 @@ public class settingsScreen extends BaseScreen {
 
 
 
-    @AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.trivago:id/fragmentSettingsManageMyDataTextView\")")
+//    @AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.trivago:id/fragmentSettingsManageMyDataTextView\")")
+//    public AndroidElement privacydataSettingsbutton;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"com.trivago:id/fragmentSettingsManageMyDataTextView\"))")
     public AndroidElement privacydataSettingsbutton;
+
+
 
     public void gotoSettings(){
         settingsButton2.click();

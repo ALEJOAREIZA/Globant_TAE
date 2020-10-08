@@ -63,6 +63,8 @@ public class TrivagoTest extends BaseMobileTest {
 		Assert.assertTrue(TrivagoHelpersMethods.isEnabled(dataprivacysettings.privacyDtasaveButton));
 		Assert.assertEquals(TrivagoHelpersMethods.numberOfElementsByclassName(dataprivacysettings.CheckBox),3);
 		dataprivacysettings.checkboxCombinations();
+		dataprivacysettings.checkboxCombinationsnoSave();
+		dataprivacysettings.checkboxCombinationsSave();
 
 	}
 
