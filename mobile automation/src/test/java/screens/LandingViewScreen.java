@@ -16,8 +16,6 @@ public class LandingViewScreen extends BaseScreen {
         super(pDriver);
     }
 
-    protected CustomWait customWait = new CustomWait(driver);
-
     @AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.trivago:id/fragmentHomeExpandedDealformSearchTextView\")")
     public AndroidElement searchHotelButton;
 
@@ -30,18 +28,7 @@ public class LandingViewScreen extends BaseScreen {
     @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().className(\"android.widget.TextView\").textContains(\"Ciudad - Bolívar, Colombia, Centro- y Sudamérica\"))")
     private AndroidElement cartagenaCityOption;
 
-    public boolean isPresent(AndroidElement element){
-        customWait.waitAndroidElementVisibility(element, customWait.SHORT_WAIT_SECONDS);
-        if (element.isDisplayed()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
     public choosingDatesScreen selectCartagena(){
-        //destinationInput.sendKeys("Cartagena");
         destinationButton.click();
         destinationInput.sendKeys("Cartagena");
         cartagenaCityOption.click();

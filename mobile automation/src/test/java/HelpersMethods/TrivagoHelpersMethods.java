@@ -17,12 +17,14 @@ import static io.appium.java_client.touch.offset.PointOption.point;
 
 public class TrivagoHelpersMethods {
 
-    protected AndroidDriver<AndroidElement> driver;
 
-
+    //protected AndroidDriver<AndroidElement> driver;
+    private static AndroidDriver<AndroidElement> driver;
     public TrivagoHelpersMethods(AndroidDriver<AndroidElement> driver) {
         this.driver = driver;
     }
+
+
 
 
     public void scroll(PointOption startpoint, PointOption endpoint){
@@ -32,5 +34,10 @@ public class TrivagoHelpersMethods {
                 .moveTo(endpoint)
                 .release()
                 .perform();
+    }
+
+    public static boolean isPresent(AndroidElement element){
+        CustomWait.waitAndroidElementVisibility(element, CustomWait.SHORT_WAIT_SECONDS);
+        return element.isDisplayed();
     }
 }

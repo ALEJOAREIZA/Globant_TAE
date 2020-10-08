@@ -17,9 +17,8 @@ import static io.appium.java_client.touch.offset.ElementOption.element;
 import static io.appium.java_client.touch.offset.PointOption.point;
 
 public class CountriesScreen extends BaseScreen {
-    CustomWait wait = new CustomWait(driver);
-    TrivagoHelpersMethods helpersMethods = new TrivagoHelpersMethods(driver);
 
+    TrivagoHelpersMethods helpersMethods = new TrivagoHelpersMethods(driver);
     public CountriesScreen(AndroidDriver<AndroidElement> pDriver) {
         super(pDriver);
     }

@@ -16,7 +16,7 @@ import util.screens.BaseScreen;
 public class CustomWait  extends BaseScreen {
 	// time in seconds for waits methods.
 	public final long MIN_WAIT_SECONDS = 1;
-	public final long SHORT_WAIT_SECONDS = 5;
+	public static final long SHORT_WAIT_SECONDS = 5;
 	public final long NORMAL_WAIT_SECONDS = 15;
 	public final long MEDIUM_WAIT_SECONDS = 40;
 	public final long LARGE_WAIT_SECONDS = 60;
@@ -28,8 +28,8 @@ public class CustomWait  extends BaseScreen {
 	}
 
 
-	public void waitAndroidElementVisibility(AndroidElement mobileElement,
-			long waitTime) {
+	public static void waitAndroidElementVisibility(AndroidElement mobileElement,
+                                                    long waitTime) {
 		WebDriverWait wait = new WebDriverWait(driver, waitTime);
 		wait.until(ExpectedConditions.visibilityOf(mobileElement));
 	}

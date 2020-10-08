@@ -1,5 +1,6 @@
 package tests;
 
+import HelpersMethods.TrivagoHelpersMethods;
 import org.testng.Assert;
 import Asserts.TrivagoAsserts;
 import org.testng.annotations.Test;
@@ -29,7 +30,7 @@ public class TrivagoTest extends BaseMobileTest {
 //	}
 
 	@Test(priority = 1)
-	public void firstTest() {
+	public void DataPrivacyTest() {
 		CountriesScreen countries = returnCountriesScreen();
 		LandingViewScreen landingView = returnLandingViewScreen();
 		CustomWait wait = returnCustomWait();
@@ -38,10 +39,10 @@ public class TrivagoTest extends BaseMobileTest {
 		Assert.assertEquals(dataPrivacy.privacyBody,TrivagoAsserts.privacyBody);
 		dataPrivacy.confirm();
 		//wait.waitAndroidElementVisibility(privacidad.Title, wait.SHORT_WAIT_SECONDS);
-		Assert.assertTrue(landingView.isPresent(landingView.searchHotelButton));
+		Assert.assertTrue(TrivagoHelpersMethods.isPresent(landingView.searchHotelButton));
 	}
 	@Test(priority = 2)
-	public void secondTest() {
+	public void searchHotelTest() {
 		LandingViewScreen landingView = returnLandingViewScreen();
 		choosingDatesScreen choosingDates = landingView.selectCartagena();
 	}

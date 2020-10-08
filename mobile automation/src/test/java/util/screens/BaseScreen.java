@@ -16,7 +16,7 @@ import org.pmw.tinylog.Logger;
  */
 public abstract class BaseScreen {
 	/** The driver. */
-	protected AndroidDriver<AndroidElement> driver;
+	protected static AndroidDriver<AndroidElement> driver;
 	private static final int PERCENT = 100;
 
 	/**
