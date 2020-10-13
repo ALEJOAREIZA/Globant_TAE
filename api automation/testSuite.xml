@@ -1,10 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<!--Example Test Suite-->
-<!--@author Brayhan.Criollo-->
-
 <suite name="Suite1" verbose="1" >
     <test name="Regression1"   >
-<!--        Desired Classes -->
-<!--        or Packages-->
+        <classes>
+            <class name="academyapi.apiTest"></class>
+        </classes>
     </test>
 </suite>
+
