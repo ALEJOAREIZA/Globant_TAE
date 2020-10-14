@@ -2,6 +2,7 @@ package academyapi.baseservice;
 
 import academyapi.Helpers.CommonMethods;
 import academyapi.pojos.apiPojo;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -97,6 +98,7 @@ public class BaseService {
         request.header("Content-Type", "application/json");
         String bankUserJson = null;
         ObjectMapper Obj = new ObjectMapper();
+        //Obj.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         String Email = CommonMethods.manualEmail(myemail,allBankUsersemail);
         apiPojo bankUser = new apiPojo();
         String firstName = CommonMethods.randomName();
@@ -114,14 +116,13 @@ public class BaseService {
         bankUser.setActive(true);
         bankUser.setCountry(Country);
         bankUser.setTelephone(PhoneNumber);
-            try {
-                bankUserJson = Obj.writeValueAsString(bankUser);
-                request.body(bankUserJson);
-                return request.post().getStatusCode();
-
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+        try {
+            bankUserJson = Obj.writeValueAsString(bankUser);
+            request.body(bankUserJson);
+            return request.post().getStatusCode();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 }
