@@ -41,21 +41,49 @@ public class CommonMethods {
         Faker faker = new Faker();
         return faker.address().country();
     }
-    public static ArrayList<String> randomEmail(int numberofemails){
+    public static ArrayList<String> randomEmail(int numberofemails,ArrayList<String> bankUsersEmails){
         String email;
         ArrayList<String> emails = new ArrayList<>();
         Faker faker = new Faker();
-        while(!(emails.size() ==numberofemails)){
-            for (int i = 0; i <numberofemails; i++) {
-                email = faker.superhero().name().replace(" ","")+"@tae.com";
-                //email = "example@gmail.com";
-                while (!emails.contains(email)) {
-                    emails.add(email);
-                    System.out.println(i + 1 + ". email added: " + email);
+        if(bankUsersEmails.size()<1){
+            while(!(emails.size() ==numberofemails)){
+                for (int i = 0; i <numberofemails; i++) {
+                    email = faker.superhero().name().replace(" ","")+"@tae.com";
+                    //email = "example@gmail.com";
+                    while (!emails.contains(email)) {
+                        emails.add(email);
+                        System.out.println(i + 1 + ". email added from scratch: " + email);
+                    }
+                }
+            }
+        }
+        else{
+            while(!(emails.size() ==numberofemails)){
+                for (int i = 0; i <numberofemails; i++) {
+                    email = faker.superhero().name().replace(" ","")+"@tae.com";
+                    //email = "MagnificentAngelIvy@tae.com";
+                    if (!bankUsersEmails.contains(email)&&!emails.contains(email)) {
+                        emails.add(email);
+                        System.out.println(i + 1 + ". email added: " + email);
+                    }
+                    else{
+                        System.out.println(email+" email already exist");
+                        return emails;
+                    }
                 }
             }
         }
         return emails;
+    }
+    public static String manualEmail(String myemail,ArrayList<String> bankUsersEmails){
+        if (!bankUsersEmails.contains(myemail)) {
+            System.out.println("email added: " + myemail);
+            return myemail;
+        }
+        else{
+            System.out.println(myemail+" email already exist");
+            return null;
+        }
     }
     public static String accountNumber(){
         Faker faker = new Faker();

@@ -32,12 +32,30 @@ public class apiTest {
         BaseService service = new BaseService();
         CommonMethods commonMethods = new CommonMethods();
         Assert.assertEquals(service.getAllBankUsers().statusCode(),200);
-        if(commonMethods.isEndPointEmpty(service.getAllBankUsers())){
-            int[] statusCode = service.createBankUsers(20);
-            for (int i = 0; i < statusCode.length; i++) {
-                Assert.assertEquals(statusCode[i],201);
-            }
+        int[] statusCode = service.createrandomBankUsers(20);
+        for (int i = 0; i < statusCode.length; i++) {
+            Assert.assertEquals(statusCode[i],201);
         }
+    }
+
+    @Test(priority = 2)
+    public void testThree() {
+        BaseService service = new BaseService();
+        CommonMethods commonMethods = new CommonMethods();
+        Assert.assertEquals(service.getAllBankUsers().statusCode(),200);
+        int[] statuscode= service.deleteAllBankUsers();
+        for (int i = 0; i < statuscode.length; i++) {
+            Assert.assertEquals(statuscode[i],200);
+        }
+        int statusCode1 = service.createmanualBankUsers("example1@gmail.com");
+        Assert.assertEquals(statusCode1,201);
+        int statusCode2 = service.createmanualBankUsers("example2@gmail.com");
+        Assert.assertEquals(statusCode2,201);
+        int statusCode3 = service.createmanualBankUsers("example1@gmail.com");
+        Assert.assertEquals(statusCode3,201);
+        int statusCode4 = service.createmanualBankUsers("example2@gmail.com");
+        Assert.assertEquals(statusCode4,201);
+
     }
 
 }
