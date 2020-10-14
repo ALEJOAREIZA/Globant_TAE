@@ -10,11 +10,6 @@ import org.testng.annotations.Test;
 
 import static java.lang.Thread.sleep;
 
-/**
- * First API test
- *
- * @author Brayhan.Criollo
- */
 public class apiTest {
 
 
