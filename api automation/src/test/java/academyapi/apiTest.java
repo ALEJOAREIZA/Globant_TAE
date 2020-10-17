@@ -43,10 +43,10 @@ public class apiTest {
         BaseService service = new BaseService();
         CommonMethods commonMethods = new CommonMethods();
         Assert.assertEquals(service.getAllBankUsers().statusCode(),200);
-        int[] statuscode= service.deleteAllBankUsers();
-        for (int i = 0; i < statuscode.length; i++) {
-            Assert.assertEquals(statuscode[i],200);
-        }
+//        int[] statuscode= service.deleteAllBankUsers();
+//        for (int i = 0; i < statuscode.length; i++) {
+//            Assert.assertEquals(statuscode[i],200);
+//        }
         int statusCode1 = service.createmanualBankUsers("example1@gmail.com");
         Assert.assertEquals(statusCode1,201);
         int statusCode2 = service.createmanualBankUsers("example2@gmail.com");

@@ -117,9 +117,5 @@ public class apiPojo implements Serializable{
         return telephone;
     }
 
-//    public boolean isnull(){
-//        first_Name.isEmpty();
-//    }
-
 
 }
