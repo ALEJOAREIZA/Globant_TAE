@@ -1,13 +1,11 @@
-package com.espn.automation.pages;
-import org.openqa.selenium.Alert;
+package com.booking.automation.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class EspnHomePage extends BasePage{
+public class BookingHomePage extends BasePage{
 
-	public EspnHomePage(WebDriver driver) {
+	public BookingHomePage(WebDriver driver) {
 		super(driver);
 		//driver.get("https://www.espn.com/?src=com&_adblock=true");
 	}
@@ -67,7 +65,7 @@ public class EspnHomePage extends BasePage{
 	public WebElement logInButton;
 
 	@FindBy(css="#global-user-trigger + .global-user > .global-user-container > .account-management [tref=\"/members/v3_1/modifyAccount\"]")
-	public WebElement espnProfile;
+	public WebElement bookingProfile;
 
 	@FindBy(id="cancel-account")
 	public WebElement deleteAccount;

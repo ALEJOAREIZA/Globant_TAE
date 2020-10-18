@@ -1,5 +1,5 @@
-package com.espn.automation.commonMethods;
-import com.espn.automation.pages.BasePage;
+package com.booking.automation.commonMethods;
+import com.booking.automation.pages.BasePage;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class commonMethods extends BasePage {

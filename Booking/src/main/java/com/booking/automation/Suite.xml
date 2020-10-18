@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="My ESPN test suite" verbose="1">
+<suite name="Booking test suite" verbose="1">
 	<parameter name="browser" value="chrome" />
-	<test name="ESPN test">
+	<test name="Booking test">
 		<classes>
-			<class name="com.espn.automation.tests.EspnTests"></class>
+			<class name="com.booking.automation.tests.BookingTests"></class>
 		</classes>
 	</test>
 </suite>

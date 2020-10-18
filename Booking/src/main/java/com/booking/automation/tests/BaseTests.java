@@ -1,23 +1,23 @@
-package com.espn.automation.tests;
+package com.booking.automation.tests;
 
+import com.booking.automation.commonMethods.commonMethods;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
-import com.espn.automation.MyDriver;
-import com.espn.automation.pages.EspnHomePage;
-import com.espn.automation.commonMethods.commonMethods;
+import com.booking.automation.MyDriver;
+import com.booking.automation.pages.BookingHomePage;
 
 public class BaseTests {
 	
 	MyDriver myDriver;
-	private EspnHomePage espnHome;
+	private BookingHomePage bookingHome;
 	private commonMethods _commonMethods;
 	
 	@BeforeSuite(alwaysRun=true)
 	@Parameters({"browser"})
 	public void beforeSuite(String browser) {
 		myDriver = new MyDriver(browser);
-		espnHome = new EspnHomePage(myDriver.getDriver());
+		bookingHome = new BookingHomePage(myDriver.getDriver());
 		_commonMethods = new commonMethods(myDriver.getDriver());
 		_commonMethods.createCredentails();
 	}
@@ -25,12 +25,12 @@ public class BaseTests {
 	@AfterSuite(alwaysRun=true)
 	public void afterSuite() {
 
-		espnHome.dispose();
+		bookingHome.dispose();
 		_commonMethods.deleteCredentails();
 	}
 
-	public EspnHomePage espnHomePage() {
-		return espnHome;
+	public BookingHomePage bookingHomePage() {
+		return bookingHome;
 	}
 	public commonMethods commonMethods() {
 		return _commonMethods;
