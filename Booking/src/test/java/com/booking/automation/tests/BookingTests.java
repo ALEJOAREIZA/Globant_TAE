@@ -80,6 +80,11 @@ public class BookingTests extends BaseTests {
 			_commonMethods.click(_bookingSearchPage.secondHotelChooseButton);
 			Assert.assertEquals(_commonMethods.getMessages(_bookingHotelPage.hotelTitle),"alejo");
 		}
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 	}
 
