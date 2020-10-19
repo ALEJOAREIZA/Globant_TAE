@@ -17,12 +17,13 @@ public class BaseTests {
 	private BookingHomePage _bookingHome;
 	private commonMethods _commonMethods;
 	private BookingSearchPage _bookingSearch;
-	private BookingHotelPage _bookingHotelPage;
+	private BookingHotelPage _bookingHotel;
 	@BeforeSuite(alwaysRun=true)
 	public void beforeSuite() {
 		myDriver = new MyDriver();
 		_bookingHome = new BookingHomePage(myDriver.getDriver());
 		_bookingSearch = new BookingSearchPage(myDriver.getDriver());
+		_bookingHotel = new BookingHotelPage(myDriver.getDriver());
 		_commonMethods = new commonMethods(myDriver.getDriver());
 	}
 
@@ -37,7 +38,7 @@ public class BaseTests {
 	public BookingSearchPage bookingSearchPage() {
 		return _bookingSearch;
 	}
-	public BookingHotelPage bookingHotelPage(){return _bookingHotelPage;}
+	public BookingHotelPage bookingHotelPage(){return _bookingHotel;}
 	public commonMethods commonMethods() {
 		return _commonMethods;
 	}

@@ -19,7 +19,7 @@ public class BookingSearchPage extends BasePage{
     @FindBy(css="#hotellist_inner [data-hotelid]:nth-child(2)")
     public WebElement secondHotel;
 
-    @FindBy(css="#hotellist_inner [data-hotelid]:nth-child(2) div > h3")
+    @FindBy(css="#hotellist_inner [data-hotelid]:nth-child(2) div > h3 span:first-child")
     public WebElement secondHotelTitle;
 
     @FindBy(css="#hotellist_inner [data-hotelid]:nth-child(2) [class=\"bui-review-score__badge\"]")
@@ -28,15 +28,13 @@ public class BookingSearchPage extends BasePage{
     @FindBy(css="#hotellist_inner [data-hotelid]:nth-child(2) [class=\"bui-price-display__value prco-inline-block-maker-helper\"]")
     public WebElement secondHotelPrice;
 
-    @FindBy(css="#hotellist_inner [data-hotelid]:nth-child(3) [class=\"txp-cta bui-button bui-button--primary sr_cta_button\"]")
+    @FindBy(css="#hotellist_inner [data-hotelid]:nth-child(2) [class=\"txp-cta bui-button bui-button--primary sr_cta_button\"]")
     public WebElement secondHotelChooseButton;
 
     @FindBy(css="[class=\"sr-usp-overlay__container is_stuck\"]")
     public WebElement loading;
 
-
-
-
-
+    public String loadingString = "[class=\"sr-usp-overlay__container is_stuck\"]";
+    public String secondHotelChooseButtonString = "#hotellist_inner [data-hotelid]:nth-child(3) [class=\"txp-cta bui-button bui-button--primary sr_cta_button\"]";
 
 }

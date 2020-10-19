@@ -1,23 +1,19 @@
 package com.booking.automation.commonMethods;
 import com.booking.automation.pages.BasePage;
 import com.github.javafaker.Faker;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.*;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class commonMethods extends BasePage {
 
@@ -25,7 +21,6 @@ public class commonMethods extends BasePage {
         super(driver);
 
     }
-
     public WebElement waitandfind(WebElement element){
         try
         {
@@ -96,8 +91,7 @@ public class commonMethods extends BasePage {
             System.out.println("Error on changetoFrame: "+frame);
         }
     }
-    public void exitfromFrame()
-    {
+    public void exitfromFrame(){
       driver.switchTo().defaultContent();
     }
     public void enterText(String text,WebElement element){
@@ -114,7 +108,7 @@ public class commonMethods extends BasePage {
         }
     }
     public void implicitwait(int seconds){
-        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(seconds, SECONDS);
     }
     public void selectCheckInDate(WebElement datePicker,int days){
         String[] dateWanted = getDayWanted(days);
@@ -135,6 +129,30 @@ public class commonMethods extends BasePage {
         String[] date = dateFormat.format(todate1).split("-");
         return date;
     }
-
+    public  Boolean waitToDesappear(String locator) {
+        try {
+            fluentWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(locator)));
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }
+    }
+    public Boolean waitToAppear(String locator) {
+        try {
+            fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locator)));
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }
+    }
+    public String getPage(){
+        return driver.getWindowHandle();
+    }
+    public void switchPage(){
+        ArrayList tabs = new ArrayList (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1).toString());
+    }
 
 }

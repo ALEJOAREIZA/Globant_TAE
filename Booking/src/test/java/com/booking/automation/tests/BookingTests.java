@@ -72,19 +72,32 @@ public class BookingTests extends BaseTests {
 		BookingSearchPage _bookingSearchPage = bookingSearchPage();
 		BookingHotelPage _bookingHotelPage = bookingHotelPage();
 		commonMethods _commonMethods = commonMethods();
+		boolean flag = true;
+		String secondHotelTile="";
+		String searchPage = _commonMethods.getPage();
 		_commonMethods.click(_bookingSearchPage.filterFiveStars);
-		while(!_commonMethods.isDisplayed(_bookingSearchPage.loading)){
-			Assert.assertNotNull(_commonMethods.getMessages(_bookingSearchPage.secondHotelTitle));
+		while(_commonMethods.waitToDesappear(_bookingSearchPage.loadingString)&&flag){
+			secondHotelTile = _commonMethods.getMessages(_bookingSearchPage.secondHotelTitle);
+			Assert.assertNotNull(secondHotelTile);
 			Assert.assertNotNull(_commonMethods.getMessages(_bookingSearchPage.secondHotelScore));
 			Assert.assertNotNull(_commonMethods.getMessages(_bookingSearchPage.secondHotelPrice));
 			_commonMethods.click(_bookingSearchPage.secondHotelChooseButton);
-			Assert.assertEquals(_commonMethods.getMessages(_bookingHotelPage.hotelTitle),"alejo");
+			_commonMethods.switchPage();
+			String hotelPage = _commonMethods.getPage();
+			flag=false;
 		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Assert.assertEquals(_commonMethods.getMessages(_bookingHotelPage.hotelTitle),secondHotelTile);
+		Assert.assertEquals(_commonMethods.getMessages(_bookingHotelPage.bookedhotelPrice),"COP 265.000");
+
+	}
+
+	@Test(priority=3)
+	public void testPageThree(){
+		BookingSearchPage _bookingSearchPage = bookingSearchPage();
+		BookingHotelPage _bookingHotelPage = bookingHotelPage();
+		commonMethods _commonMethods = commonMethods();
+		Assert.assertEquals(_commonMethods.getMessages(_bookingHotelPage.bookedInfo),"1 noche, 3 adultos, 1 niño");
+
 
 	}
 
