@@ -64,7 +64,6 @@ public class commonMethods extends BasePage {
                 fluentWait.until(ExpectedConditions.elementToBeClickable(elementfound));
                 elementfound.click();
                 implicitwait(3);
-                Thread.sleep(1000);
                 System.out.println("Element sucessfully clicked: "+elementfound);
             }
         }
