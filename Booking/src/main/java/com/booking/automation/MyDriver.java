@@ -24,5 +24,8 @@ public class MyDriver {
 			driver.quit();
 		}
 	}
+	public String getTitle(){
+		return driver.getTitle();
+	}
 }
 
