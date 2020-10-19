@@ -1,7 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Booking test suite" verbose="1">
-	<parameter name="browser" value="chrome" />
 	<test name="Booking test">
 		<classes>
 			<class name="com.booking.automation.tests.BookingTests"></class>

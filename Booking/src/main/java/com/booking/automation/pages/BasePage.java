@@ -1,23 +1,31 @@
 package com.booking.automation.pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public abstract class BasePage {
 
 	public WebDriver driver;
-	public WebDriverWait wait;
+	public Wait<WebDriver> fluentWait;
 
 	public BasePage(WebDriver pDriver) {
 		PageFactory.initElements(pDriver, this);
 		driver = pDriver;
-		wait = new WebDriverWait(driver,20);
+		fluentWait = new FluentWait<WebDriver>(driver)
+				.withTimeout(30, TimeUnit.SECONDS)
+				.pollingEvery(5, TimeUnit.SECONDS)
+				.ignoring(NoSuchElementException.class);
 	}
 
-	protected WebDriver getDriver() {
-		return driver;
-	}
+//	protected WebDriver getDriver() {
+//		return driver;
+//	}
 
 	public void dispose() {
 		if (driver != null) {

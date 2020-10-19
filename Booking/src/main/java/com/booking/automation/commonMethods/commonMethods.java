@@ -1,14 +1,22 @@
 package com.booking.automation.commonMethods;
 import com.booking.automation.pages.BasePage;
 import com.github.javafaker.Faker;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class commonMethods extends BasePage {
@@ -18,31 +26,22 @@ public class commonMethods extends BasePage {
 
     }
 
-    public String randomEmail(){
-        Faker faker = new Faker();
-        return faker.name().firstName()+"_"+faker.name().lastName()+ "@tae.com";
-    }
     public WebElement waitandfind(WebElement element){
         try
         {
-            WebElement elementfound = wait.until(ExpectedConditions.visibilityOf(element));
-            implicitwait(1);
+            WebElement elementfound = fluentWait.until(ExpectedConditions.visibilityOf(element));
             System.out.println("Element sucessfully found: "+elementfound);
-            return  elementfound;
+            if(elementfound.isDisplayed()){
+                return  elementfound;
+            }
+            else{
+                return null;
+            }
+
         }
         catch(Exception e) {
             System.out.println("Element not found: "+element);
             return null;
-        }
-    }
-    public boolean isClickable(WebElement element){
-        WebElement elementfound = waitandfind(element);
-        if(elementfound.isDisplayed()){
-            wait.until(ExpectedConditions.elementToBeClickable(elementfound));
-            return true;
-        }
-        else{
-            return false;
         }
     }
     public boolean isDisplayed(WebElement element){
@@ -53,16 +52,28 @@ public class commonMethods extends BasePage {
             return false;
         }
     }
-    public void click(WebElement element){
+    public boolean isClickable(WebElement element){
+        WebElement elementfound = waitandfind(element);
         try {
-            WebElement elementfound = waitandfind(element);
-            wait = new WebDriverWait(driver, 10);
-            WebElement el = wait.until(ExpectedConditions.elementToBeClickable((elementfound)));
-            el.click();
-            implicitwait(2);
+            fluentWait.until(ExpectedConditions.elementToBeClickable(elementfound));
+            return true;
         }
         catch(Exception e) {
-            System.out.println("Error On click: "+element+" error: "+e);
+            return false;
+        }
+    }
+    public void click(WebElement element){
+        WebElement elementfound = waitandfind(element);
+        try {
+            if(elementfound.isDisplayed()){
+                fluentWait.until(ExpectedConditions.elementToBeClickable(elementfound));
+                elementfound.click();
+                implicitwait(3);
+                System.out.println("Element sucessfully clicked: "+elementfound);
+            }
+        }
+        catch(Exception e) {
+            System.out.println("Error On click: "+elementfound+" error: "+e);
         }
     }
     public String getMessages(WebElement element){
@@ -89,72 +100,40 @@ public class commonMethods extends BasePage {
       driver.switchTo().defaultContent();
     }
     public void enterText(String text,WebElement element){
+        WebElement elementfound = waitandfind(element);
         try {
-            WebElement elementfound = waitandfind(element);
-            elementfound.sendKeys(text);
-            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+            if(elementfound.isDisplayed()){
+                elementfound.sendKeys(text);
+                implicitwait(3);
+                System.out.println("sucessfully entertext: "+text+" + "+elementfound);
+            }
         }
         catch(Exception e) {
-            System.out.println("Error On enterText: "+element);
+            System.out.println("Error On enterText: "+text+" + "+elementfound+" error: "+e);
         }
     }
-    public void writeCredentails(String email, String password){
-        try {
-            FileWriter myWriter = new FileWriter("credentials.txt",true);
-            myWriter.append("\n");
-            myWriter.write(email);
-            myWriter.append("\n");
-            myWriter.write(password);
-            myWriter.close();
-        } catch (IOException e) {
-            System.out.println("Error writing credentials: "+e);
-        }
-
-    }
-    public String readCredentails(){
-        try {
-            String data = "";
-            return data = new String(Files.readAllBytes(Paths.get("credentials.txt")));
-        }
-        catch (IOException e) {
-            System.out.println("Error reading credentials: "+e);
-            return null;
-        }
-    }
-    public void createCredentails(){
-        try {
-            File credentials = new File("credentials.txt");
-            if (credentials.createNewFile()) {
-                System.out.println("File created: " + credentials.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-            writeCredentails("globant_tae4@tae.com","HelloWorld1!");
-        } catch (IOException e) {
-            System.out.println("An error occurred."+e);
-            e.printStackTrace();
-        }
-    }
-    public void deleteCredentails(){
-        File credentials = new File("credentials.txt");
-        if (credentials.delete()) {
-            System.out.println("Deleted the file: " + credentials.getName());
-        } else {
-            System.out.println("Failed to delete the file.");
-        }
-
-    }
-
     public void implicitwait(int seconds){
-
-        try {
-            driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
-            Thread.sleep(seconds*1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
     }
-
+    public void selectCheckInDate(WebElement datePicker,int days){
+        String[] dateWanted = getDayWanted(days);
+        List<WebElement> columns = datePicker.findElements(By.tagName("td"));
+        for (WebElement cell: columns) {
+            if (cell.getText().contains(dateWanted[2])) {
+                cell.click();
+                break;
+            }
+        }
+        implicitwait(4);
+    }
+    public String[] getDayWanted (int days){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal  = Calendar.getInstance(TimeZone.getDefault());
+        cal.add(Calendar.DATE, +days);
+        Date todate1 = cal.getTime();
+        String[] date = dateFormat.format(todate1).split("-");
+        return date;
+    }
 
 
 }

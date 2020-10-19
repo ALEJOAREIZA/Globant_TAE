@@ -8,136 +8,76 @@ import org.testng.annotations.Test;
 public class BookingTests extends BaseTests {
 
 	@Test(priority=1)
-	public void testLogInPopUp() {
+	public void test1() {
 		BookingHomePage _bookingHomePage = bookingHomePage();
 		commonMethods _commonMethods = commonMethods();
-		boolean isClickable = false;
-		_commonMethods.click(_bookingHomePage.userIcon);
-		_commonMethods.click(_bookingHomePage.loginOption);
-		_commonMethods.changetoFrame(_bookingHomePage.logInFrame);
-		Assert.assertEquals(_commonMethods.getMessages(_bookingHomePage.logInPopUp),
-				"Log In\n" +
-						"Need help logging in?\n" +
-						"Facebook Log In is no longer available. For help logging in, please use the link above.\n" +
-						"Sign Up");
-		_commonMethods.click(_bookingHomePage.closeXIcon);
-		_commonMethods.exitfromFrame();
-	}
-	@Test(priority=2)
-	public void testSigUpPopUp() {
-		BookingHomePage _bookingHomePage = bookingHomePage();
-		commonMethods _commonMethods = commonMethods();
-		_commonMethods.click(_bookingHomePage.userIcon);
-		_commonMethods.click(_bookingHomePage.loginOption);
-		_commonMethods.changetoFrame(_bookingHomePage.logInFrame);
-		_commonMethods.click(_bookingHomePage.SignUpbutton);
-		Assert.assertEquals(_commonMethods.getMessages(_bookingHomePage.SignInPopUp),"Create Account\n" +
-				"Show password\n" +
-				"Please send me occasional information and offers about my favorite teams, sports and other information from:\n" +
-				"ESPN, ESPN+ and The Walt Disney Family of Companies\n" +
-				"By creating an account, I agree to the Terms of Use and acknowledge that I have read the Privacy Policy.\n" +
-				"My home country/region: Colombia. Change.\n" +
-				"Sign Up\n" +
-				"Already have an account? Log In");
-		_commonMethods.click(_bookingHomePage.closeXIcon);
-		_commonMethods.exitfromFrame();
-	}
-	@Test(priority=3)
-	public void createAccount(){
-		BookingHomePage _bookingHomePage = bookingHomePage();
-		commonMethods _commonMethods = commonMethods();
-		String firstName="Alejandro";
-		String lastName="Areiza";
-		String email=_commonMethods.randomEmail();
-		String password="HelloWorld1!";
-		_commonMethods.click(_bookingHomePage.userIcon);
-		_commonMethods.click(_bookingHomePage.loginOption);
-		_commonMethods.changetoFrame(_bookingHomePage.logInFrame);
-		_commonMethods.click(_bookingHomePage.SignUpbutton);
-		_commonMethods.enterText(firstName, _bookingHomePage.firstName);
-		_commonMethods.enterText(lastName, _bookingHomePage.lastName);
-		_commonMethods.enterText(email, _bookingHomePage.email);
-		_commonMethods.enterText(password, _bookingHomePage.password);
-		_commonMethods.click(_bookingHomePage.SignUpConfirmationButton);
-		_commonMethods.exitfromFrame();
-		Assert.assertTrue(_commonMethods.isClickable(_bookingHomePage.userIcon));
-		_commonMethods.click(_bookingHomePage.userIcon);
-		Assert.assertTrue(_commonMethods.isClickable(_bookingHomePage.logoutOption));
-		_commonMethods.click(_bookingHomePage.logoutOption);
-		_commonMethods.writeCredentails(email,password);
-	}
-	@Test(priority=4)
-	public void testLogIn() {
-		BookingHomePage _bookingHomePage = bookingHomePage();
-		commonMethods _commonMethods = commonMethods();
-		String[] credentials = _commonMethods.readCredentails().split("\n");
-		_commonMethods.click(_bookingHomePage.userIcon);
-		_commonMethods.click(_bookingHomePage.loginOption);
-		_commonMethods.changetoFrame(_bookingHomePage.logInFrame);
-		_commonMethods.enterText(credentials[1], _bookingHomePage.userName);
-		_commonMethods.enterText(credentials[2], _bookingHomePage.signInPassword);
-		_commonMethods.click(_bookingHomePage.logInButton);
-		_commonMethods.exitfromFrame();
-		_commonMethods.click(_bookingHomePage.userIcon);
-		Assert.assertTrue(_commonMethods.isClickable(_bookingHomePage.logoutOption));
-		_commonMethods.click(_bookingHomePage.logoutOption);
-	}
-	@Test(priority=5)
-	public void testLogOut() {
-		BookingHomePage _bookingHomePage = bookingHomePage();
-		commonMethods _commonMethods = commonMethods();
-		String[] credentials = _commonMethods.readCredentails().split("\n");
-		_commonMethods.click(_bookingHomePage.userIcon);
-		_commonMethods.click(_bookingHomePage.loginOption);
-		_commonMethods.changetoFrame(_bookingHomePage.logInFrame);
-		_commonMethods.enterText(credentials[1], _bookingHomePage.userName);
-		_commonMethods.enterText(credentials[2], _bookingHomePage.signInPassword);
-		_commonMethods.click(_bookingHomePage.logInButton);
-		_commonMethods.exitfromFrame();
-		_commonMethods.click(_bookingHomePage.userIcon);
-		_commonMethods.click(_bookingHomePage.logoutOption);
-		_commonMethods.click(_bookingHomePage.userIcon);
-		Assert.assertTrue(_commonMethods.isClickable(_bookingHomePage.loginOption));
-		_commonMethods.click(_bookingHomePage.userIcon);
-	}
+		int  checkingdate=1;
+		int  checkoutdate=2;
+		int adultsNumberWanted=3;
+		int childrenNumberWanted=1;
+		int roomsNumberWanted=1;
 
-	@Test(priority=6)
-	public void deleteAccount() {
-		BookingHomePage _bookingHomePage = bookingHomePage();
-		commonMethods _commonMethods = commonMethods();
-		String[] credentials = _commonMethods.readCredentails().split("\n");
-		_commonMethods.click(_bookingHomePage.userIcon);
-		_commonMethods.click(_bookingHomePage.loginOption);
-		_commonMethods.changetoFrame(_bookingHomePage.deleteAccountFrame);
-		_commonMethods.enterText(credentials[3], _bookingHomePage.userName);
-		_commonMethods.enterText(credentials[4], _bookingHomePage.signInPassword);
-		_commonMethods.click(_bookingHomePage.logInButton);
-		_commonMethods.exitfromFrame();
-		_commonMethods.click(_bookingHomePage.userIcon);
-		Assert.assertTrue(_commonMethods.isClickable(_bookingHomePage.bookingProfile));
-		_commonMethods.click(_bookingHomePage.bookingProfile);
-		_commonMethods.changetoFrame(_bookingHomePage.deleteAccountFrame);
-		_commonMethods.click(_bookingHomePage.deleteAccount);
-		_commonMethods.click(_bookingHomePage.deleteAccountConfirmation);
-		_commonMethods.click(_bookingHomePage.deleteAccountConfirmationclose);
-		_commonMethods.exitfromFrame();
-		_commonMethods.click(_bookingHomePage.userIcon);
-		Assert.assertTrue(_commonMethods.isClickable(_bookingHomePage.loginOption));
-		_commonMethods.click(_bookingHomePage.userIcon);
-	}
-	@Test(priority=7)
-	public void Accounteactivated() {
-		BookingHomePage _bookingHomePage = bookingHomePage();
-		commonMethods _commonMethods = commonMethods();
-		String[] credentials = _commonMethods.readCredentails().split("\n");
-		_commonMethods.click(_bookingHomePage.userIcon);
-		_commonMethods.click(_bookingHomePage.loginOption);
-		_commonMethods.changetoFrame(_bookingHomePage.logInFrame);
-		_commonMethods.enterText(credentials[3], _bookingHomePage.userName);
-		_commonMethods.enterText(credentials[4], _bookingHomePage.signInPassword);
-		_commonMethods.click(_bookingHomePage.logInButton);
-		Assert.assertTrue(_commonMethods.getMessages(_bookingHomePage.AccountDeactivated).contains("Account Deactivated"));
+		_commonMethods.click(_bookingHomePage.tabAccomodations);
+		_commonMethods.enterText("Bogotá, Colombia",_bookingHomePage.inputDestination);
+		_commonMethods.click(_bookingHomePage.inputDates);
+		_commonMethods.selectCheckInDate(_bookingHomePage.datePicker,checkingdate);
+		_commonMethods.selectCheckInDate(_bookingHomePage.datePicker,checkoutdate);
+		_commonMethods.click(_bookingHomePage.guest);
+		Integer adultsNumber=Integer.parseInt(_commonMethods.getMessages(_bookingHomePage.guestContainerAdults));
+		if(adultsNumber<adultsNumberWanted){
+			for (int i = 0; i < adultsNumberWanted-adultsNumber; i++) {
+				_commonMethods.click(_bookingHomePage.adultNumberAsc);
+			}
+		}
+		else{
+			for (int i = 0; i < adultsNumber-adultsNumberWanted; i++) {
+				_commonMethods.click(_bookingHomePage.adultNumberDesc);
+			}
+		}
+		Assert.assertEquals(_commonMethods.getMessages(_bookingHomePage.guestContainerAdults),"3");
+		Integer childrenNumber=Integer.parseInt(_commonMethods.getMessages(_bookingHomePage.guestContainerChildren));
+		if(childrenNumber<childrenNumberWanted){
+			for (int i = 0; i < childrenNumberWanted-childrenNumber; i++) {
+				_commonMethods.click(_bookingHomePage.childrenNumberAsc);
+			}
+		}
+		else{
+			for (int i = 0; i < childrenNumber-childrenNumberWanted; i++) {
+				_commonMethods.click(_bookingHomePage.childrenNumberDesc);
+			}
+		}
+		Assert.assertEquals(_commonMethods.getMessages(_bookingHomePage.guestContainerChildren),"1");
+		Integer roomsNumber=Integer.parseInt(_commonMethods.getMessages(_bookingHomePage.guestContainerRooms));
+		if(roomsNumber<roomsNumberWanted){
+			for (int i = 0; i < roomsNumberWanted-roomsNumber; i++) {
+				_commonMethods.click(_bookingHomePage.roomsNumberAsc);
+			}
+		}
+		else{
+			for (int i = 0; i < roomsNumber-roomsNumberWanted; i++) {
+				_commonMethods.click(_bookingHomePage.roomsNumberDesc);
+			}
+		}
+		Assert.assertEquals(_commonMethods.getMessages(_bookingHomePage.guestContainerRooms),"1");
+
+		_commonMethods.click(_bookingHomePage.childrenAge);
+		_commonMethods.click(_bookingHomePage.childrenAge9);
+		//Assert.assertEquals(_commonMethods.getMessages(_bookingHomePage.childrenAge),"9");
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		_commonMethods.click(_bookingHomePage.searchButton);
+
+
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 	}
+
 
 }
