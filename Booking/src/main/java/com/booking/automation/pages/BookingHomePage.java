@@ -3,12 +3,30 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.Date;
+
 public class BookingHomePage extends BasePage{
 
 	public BookingHomePage(WebDriver pDriver) {
 		super(pDriver);
 	}
 
+	private Date checkInDate;
+	private Date checkOutDate;
+
+
+	public Date getcheckInDate() {
+		return checkInDate;
+	}
+	public void setcheckInDate(Date checkInDate) {
+		this.checkInDate = checkInDate;
+	}
+	public Date getcheckOutDate() {
+		return checkOutDate;
+	}
+	public void setcheckOutDate(Date checkOutDate) {
+		this.checkOutDate = checkOutDate;
+	}
 
 	@FindBy(css="#cross-product-bar .cross-product-bar__wrapper [data-ga-track*=\"acco\"]")
 	public WebElement tabAccomodations;
@@ -54,6 +72,11 @@ public class BookingHomePage extends BasePage{
 	public WebElement childrenAge9;
 	@FindBy(css="[class=\"xp__button\"] [type=\"submit\"]")
 	public WebElement searchButton;
+
+	@FindBy(css="[class=\"bui-calendar__month\"]")
+	public WebElement datePickerMonth;
+	@FindBy(css="[data-bui-ref=\"calendar-next\"]")
+	public WebElement nextCalendarPage;
 
 
 }

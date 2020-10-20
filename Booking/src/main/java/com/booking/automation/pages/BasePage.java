@@ -23,13 +23,4 @@ public abstract class BasePage {
 				.ignoring(NoSuchElementException.class);
 	}
 
-//	protected WebDriver getDriver() {
-//		return driver;
-//	}
-
-	public void dispose() {
-		if (driver != null) {
-			driver.quit();
-		}
-	}
 }

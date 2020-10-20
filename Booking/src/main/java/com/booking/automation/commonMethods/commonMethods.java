@@ -1,5 +1,6 @@
 package com.booking.automation.commonMethods;
 import com.booking.automation.pages.BasePage;
+import com.booking.automation.waits.waits;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
@@ -8,6 +9,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -21,6 +23,9 @@ public class commonMethods extends BasePage {
         super(driver);
 
     }
+
+    com.booking.automation.waits.waits wait = new waits(driver);
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     public WebElement waitandfind(WebElement element){
         try
         {
@@ -39,31 +44,13 @@ public class commonMethods extends BasePage {
             return null;
         }
     }
-    public boolean isDisplayed(WebElement element){
-        if(waitandfind(element).isDisplayed()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    public boolean isClickable(WebElement element){
-        WebElement elementfound = waitandfind(element);
-        try {
-            fluentWait.until(ExpectedConditions.elementToBeClickable(elementfound));
-            return true;
-        }
-        catch(Exception e) {
-            return false;
-        }
-    }
     public void click(WebElement element){
         WebElement elementfound = waitandfind(element);
         try {
             if(elementfound.isDisplayed()){
                 fluentWait.until(ExpectedConditions.elementToBeClickable(elementfound));
                 elementfound.click();
-                implicitwait(3);
+                wait.implicitwait(3);
                 System.out.println("Element sucessfully clicked: "+elementfound);
             }
         }
@@ -81,24 +68,12 @@ public class commonMethods extends BasePage {
             return null;
         }
     }
-    public void changetoFrame(WebElement frame){
-        try {
-            WebElement elementfound = waitandfind(frame);
-            driver.switchTo().frame(elementfound);
-        }
-        catch(Exception e) {
-            System.out.println("Error on changetoFrame: "+frame);
-        }
-    }
-    public void exitfromFrame(){
-      driver.switchTo().defaultContent();
-    }
     public void enterText(String text,WebElement element){
         WebElement elementfound = waitandfind(element);
         try {
             if(elementfound.isDisplayed()){
                 elementfound.sendKeys(text);
-                implicitwait(3);
+                wait.implicitwait(3);
                 System.out.println("sucessfully entertext: "+text+" + "+elementfound);
             }
         }
@@ -106,52 +81,103 @@ public class commonMethods extends BasePage {
             System.out.println("Error On enterText: "+text+" + "+elementfound+" error: "+e);
         }
     }
-    public void implicitwait(int seconds){
-        driver.manage().timeouts().implicitlyWait(seconds, SECONDS);
-    }
-    public void selectCheckInDate(WebElement datePicker,int days){
-        String[] dateWanted = getDayWanted(days);
-        List<WebElement> columns = datePicker.findElements(By.tagName("td"));
-        for (WebElement cell: columns) {
-            if (cell.getText().contains(dateWanted[2])) {
-                cell.click();
-                break;
+    public Date selectCheckInDate(WebElement datePicker,int daysnumber){
+        Date checkInDate = todaysDate(daysnumber);
+        String cssSelector = buildingSelector(checkInDate);
+        boolean flag = true;
+        while(flag){
+            List<WebElement> days = datePicker.findElements(By.tagName("td"));
+            for (int j = 0; j <days.size() ; j++) {
+                try {
+                    if (datePicker.findElement(By.cssSelector(cssSelector)).isDisplayed())
+                    {
+                        flag=false;
+                        datePicker.findElement(By.cssSelector(cssSelector)).click();
+                        break;
+                    }
+                } catch(Exception e) {
+                    break;
+                }
+            }
+            if(flag){
+                WebElement next = datePicker.findElement(By.cssSelector("[data-bui-ref=\"calendar-next\"]"));
+                next.click();
             }
         }
-        implicitwait(4);
+        wait.implicitwait(4);
+        return checkInDate;
     }
-    public String[] getDayWanted (int days){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public Date selectCheckOutDate(WebElement datePicker,Date checkInDate,int daysnumber){
+        Date checkOutDate = dateFormat(checkInDate,daysnumber);
+        String cssSelector = buildingSelector(checkOutDate);
+        boolean flag = true;
+        while(flag){
+            List<WebElement> days = datePicker.findElements(By.tagName("td"));
+            for (int j = 0; j <days.size() ; j++) {
+                try {
+                    if (datePicker.findElement(By.cssSelector(cssSelector)).isDisplayed())
+                    {
+                        flag=false;
+                        datePicker.findElement(By.cssSelector(cssSelector)).click();
+                        break;
+                    }
+                } catch(Exception e) {
+                    break;
+                }
+            }
+            if(flag){
+                WebElement next = datePicker.findElement(By.cssSelector("[data-bui-ref=\"calendar-next\"]"));
+                next.click();
+            }
+
+        }
+        wait.implicitwait(4);
+        return checkOutDate;
+    }
+    private Date todaysDate (int days){
+
         Calendar cal  = Calendar.getInstance(TimeZone.getDefault());
         cal.add(Calendar.DATE, +days);
-        Date todate1 = cal.getTime();
-        String[] date = dateFormat.format(todate1).split("-");
-        return date;
+        Date todaysDate = cal.getTime();
+        String[] date = dateFormat.format(todaysDate).split("-");
+        return todaysDate;
     }
-    public  Boolean waitToDesappear(String locator) {
-        try {
-            fluentWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(locator)));
-            return true;
-        }
-        catch(Exception e) {
-            return false;
-        }
-    }
-    public Boolean waitToAppear(String locator) {
-        try {
-            fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locator)));
-            return true;
-        }
-        catch(Exception e) {
-            return false;
-        }
-    }
-    public String getPage(){
+    public String getPageContext(){
         return driver.getWindowHandle();
     }
-    public void switchPage(){
+    public void switchPage(int page){
         ArrayList tabs = new ArrayList (driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1).toString());
+        driver.switchTo().window(tabs.get(page-1).toString());
+    }
+    private Date dateFormat (Date date,int days){
+        Calendar cal  = Calendar.getInstance(TimeZone.getDefault());
+        cal.setTime(date);
+        cal.add(Calendar.DATE,days);
+        return cal.getTime();
+    }
+    private String buildingSelector(Date date){
+        String datewanted = dateFormat.format(date);
+       return "[class=\"bui-calendar\"] td[data-date=\""+datewanted+"\"]";
+    }
+    public String datetoDateString(Date date){
+        Calendar cal  = Calendar.getInstance(TimeZone.getDefault());
+        cal.setTime(date);
+        Date todaysDate = cal.getTime();
+        return dateFormat.format(todaysDate);
+    }
+
+    public void sendKeys(String text,WebElement element){
+        WebElement elementfound = waitandfind(element);
+        try {
+            if(elementfound.isDisplayed()){
+                elementfound.sendKeys(text);
+                wait.implicitwait(3);
+                System.out.println("sucessfully entertext: "+text+" + "+elementfound);
+            }
+        }
+        catch(Exception e) {
+            System.out.println("Error On enterText: "+text+" + "+elementfound+" error: "+e);
+        }
     }
 
 }
