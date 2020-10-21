@@ -13,7 +13,7 @@ public class MyDriver {
 	public MyDriver() {
 		System.setProperty("webdriver.chrome.driver", "C:\\chrome driver\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driver.get("http://34.205.174.166/product/belt/");
+		driver.get("http://34.205.174.166/product/alejandro-areiza/");
 		driver.manage().window().maximize();
 	}
 	public WebDriver getDriver() {
