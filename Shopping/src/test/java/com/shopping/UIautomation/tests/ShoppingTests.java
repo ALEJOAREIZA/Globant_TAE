@@ -1,11 +1,8 @@
-package com.shopping.automation.tests;
+package com.shopping.UIautomation.tests;
 
-import com.shopping.automation.MyDriver;
-import com.shopping.automation.asserts.shoppingAssert;
-import com.shopping.automation.commonMethods.commonMethods;
-import com.shopping.automation.pages.ProductPage;
-import org.omg.CORBA._PolicyStub;
-import org.openqa.selenium.WebDriver;
+import com.shopping.UIautomation.asserts.shoppingAssert;
+import com.shopping.UIautomation.commonMethods.commonMethods;
+import com.shopping.UIautomation.pages.ProductPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

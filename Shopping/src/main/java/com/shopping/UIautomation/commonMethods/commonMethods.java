@@ -1,6 +1,6 @@
-package com.shopping.automation.commonMethods;
-import com.shopping.automation.pages.BasePage;
-import com.shopping.automation.waits.waits;
+package com.shopping.UIautomation.commonMethods;
+import com.shopping.UIautomation.pages.BasePage;
+import com.shopping.UIautomation.waits.waits;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 

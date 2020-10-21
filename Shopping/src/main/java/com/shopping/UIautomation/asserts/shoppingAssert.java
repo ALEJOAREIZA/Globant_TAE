@@ -1,4 +1,4 @@
-package com.shopping.automation.asserts;
+package com.shopping.UIautomation.asserts;
 
 public class shoppingAssert {
     public static String pageTitle = "Alejandro Areiza – QA Playground";
