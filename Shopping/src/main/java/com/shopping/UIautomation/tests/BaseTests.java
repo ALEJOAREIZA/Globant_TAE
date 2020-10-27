@@ -17,12 +17,11 @@ public class BaseTests {
 
 	@BeforeSuite(alwaysRun=true)
 	public void beforeSuite() {
+		_shoppingService = new shoppingService();
+		_shoppingService.createProduct();
 		myDriver = new MyDriver();
 		_productpage = new ProductPage(myDriver.getDriver());
 		_commonMethods = new commonMethods(myDriver.getDriver());
-		_shoppingService = new shoppingService();
-		_shoppingService.authenticate(7065);
-		_shoppingService.getProducts(7065);
 	}
 	@AfterSuite(alwaysRun=true)
 	public void afterSuite() {

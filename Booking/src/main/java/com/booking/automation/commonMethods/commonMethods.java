@@ -29,7 +29,7 @@ public class commonMethods extends BasePage {
     public WebElement waitandfind(WebElement element){
         try
         {
-            WebElement elementfound = fluentWait.until(ExpectedConditions.visibilityOf(element));
+            WebElement elementfound = wait.fluentWait.until(ExpectedConditions.visibilityOf(element));
             System.out.println("Element sucessfully found: "+elementfound);
             if(elementfound.isDisplayed()){
                 return  elementfound;
@@ -48,7 +48,7 @@ public class commonMethods extends BasePage {
         WebElement elementfound = waitandfind(element);
         try {
             if(elementfound.isDisplayed()){
-                fluentWait.until(ExpectedConditions.elementToBeClickable(elementfound));
+                wait.fluentWait.until(ExpectedConditions.elementToBeClickable(elementfound));
                 elementfound.click();
                 wait.implicitwait(3);
                 System.out.println("Element sucessfully clicked: "+elementfound);

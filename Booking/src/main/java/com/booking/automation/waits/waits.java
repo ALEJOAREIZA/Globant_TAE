@@ -21,7 +21,7 @@ public class waits {
         driver = pDriver;
         fluentWait = new FluentWait<WebDriver>(driver)
                 .withTimeout(30, TimeUnit.SECONDS)
-                .pollingEvery(5, TimeUnit.SECONDS)
+                .pollingEvery(1, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
 

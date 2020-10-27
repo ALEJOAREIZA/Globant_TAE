@@ -109,7 +109,8 @@ public class BookingTests extends BaseTests {
 		BookingDataPage _bookingData = bookingDataPage();
 		commonMethods _commonMethods = commonMethods();
 		Assert.assertEquals(_commonMethods.getMessages(_bookingHotelPage.bookedInfo),bookingAssert.bookingInfo);
-		Assert.assertEquals(_commonMethods.getMessages(_bookingHotelPage.bookedhotelPrice),bookingAssert.bookingHotelPrice);
+		Assert.assertNotNull(_commonMethods.getMessages(_bookingHotelPage.bookedhotelPrice));
+		Assert.assertNotEquals(_commonMethods.getMessages(_bookingHotelPage.bookedhotelPrice),"");//
 //		Assert.assertTrue(_commonMethods.getMessages(_bookingHotelPage.checkInDate).contains(_commonMethods.datetoDateString(_bookingHomePage.getcheckInDate()).split("-")[0]));
 //		Assert.assertTrue(_commonMethods.getMessages(_bookingHotelPage.checkInDate).contains(_commonMethods.datetoDateString(_bookingHomePage.getcheckInDate()).split("-")[2]));
 //		Assert.assertTrue(_commonMethods.getMessages(_bookingHotelPage.checkOutDate).contains(_commonMethods.datetoDateString(_bookingHomePage.getcheckOutDate()).split("-")[0]));
